@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <se.fekete.furiganatextview.furiganaview.FuriganaTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/furigana_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:contains_ruby_tags="true" />
+
+    <se.fekete.furiganatextview.furiganaview.FuriganaTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="@string/furigana_text_2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        app:contains_ruby_tags="true" />
+
+    <se.fekete.furiganatextview.furiganaview.FuriganaTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="@string/furigana_text_3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/colorAccent"
+        app:contains_ruby_tags="true"
+        app:furigana_text_color="@color/colorPrimary" />
+
+
+    <se.fekete.furiganatextview.furiganaview.FuriganaTextView
+        android:id="@+id/text_view_furigana"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorPrimary"
+        app:contains_ruby_tags="true" />
+
+</LinearLayout>
