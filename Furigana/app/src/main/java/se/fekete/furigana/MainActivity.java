@@ -15,15 +15,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView textView = new TextView(this);
-        textView.setTextSize(20);
-
         FuriganaView furiganaView = (FuriganaView) this.findViewById(R.id.furigana_view);
-        String text = "は{寒気}を{防;ふせ}ぐために{厚;あつ}いコートを{着;き}ていた。";
-        String textWithRuby = "は<ruby>寒気<rt>さむけ</rt></ruby>を";
+        String textWithRuby = "サンシャイン６０の<ruby>展望台<rt>てんぼうだい</rt></ruby>が<ruby>新<rt>あたら</rt></ruby>しくなる";
 
         if (furiganaView != null) {
             textWithRuby = FuriganaUtils.parseRuby(textWithRuby);
-            furiganaView.updateText(text);
+            furiganaView.updateText(textWithRuby);
         }
     }
 }
