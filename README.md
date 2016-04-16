@@ -7,18 +7,8 @@ The FuriganaTextView builds upon the furigana-view that what originally authored
 #Examples
 Adding the furigana textview in XML
 
-`<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
-
-    <se.fekete.furiganatextview.FuriganaView
+ `<se.fekete.furiganatextview.FuriganaView
         android:id="@+id/furigana_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp" />
-</RelativeLayout>`
+        android:textSize="25sp" />`
