@@ -7,8 +7,8 @@ The FuriganaTextView builds upon the furigana-view that what originally authored
 #Examples
 Adding the furigana textview in XML
 
- `<se.fekete.furiganatextview.FuriganaView
+ ```<se.fekete.furiganatextview.FuriganaView
         android:id="@+id/furigana_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp" />`
+        android:textSize="25sp" />```
