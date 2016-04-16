@@ -14,3 +14,21 @@ Adding the furigana textview in XML
         android:layout_height="wrap_content"
         android:textSize="25sp" />
 ```
+
+Usage from Java
+```
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        FuriganaView furiganaView = (FuriganaView) this.findViewById(R.id.furigana_view);
+        String textWithRuby = "サンシャイン６０の<ruby>展望台<rt>てんぼうだい</rt></ruby>が<ruby>新<rt>あたら</rt></ruby>しくなる";
+        textWithRuby = FuriganaUtils.parseRuby(textWithRuby); //Convert text with <ruby> tags
+        furiganaView.updateText(textWithRuby); //set the text
+    }
+}
+
+```
