@@ -33,5 +33,5 @@ public class MainActivity extends AppCompatActivity {
 
 ```
 
-If you the kanji are not enclosed in `<ruby>` tags the supported string format is the same as presented by the [original author](https://github.com/sh0/furigana-view) of the furigana-view.
+If the kanji are not enclosed in `<ruby>` tags the supported string format is the same as presented by the [original author](https://github.com/sh0/furigana-view) of the furigana-view.
 `"{彼女;かのじょ}は{寒気;さむけ}を{防;ふせ}ぐために{厚;あつ}いコートを{着;き}ていた。"`
