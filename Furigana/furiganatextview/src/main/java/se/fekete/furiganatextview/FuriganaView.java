@@ -502,75 +502,77 @@ public class FuriganaView extends TextView {
             LineNormal line_n = new LineNormal();
             LineFurigana line_f = new LineFurigana();
 
-            // Initial span
-            int span_i = 0;
-            Span span = m_span.get(span_i);
+            if (!m_span.isEmpty()) {
+                // Initial span
+                int span_i = 0;
+                Span span = m_span.get(span_i);
 
-            // Iterate
-            while (span != null) {
-                // Start offset
-                float line_s = line_x;
+                // Iterate
+                while (span != null) {
+                    // Start offset
+                    float line_s = line_x;
 
-                // Calculate possible line size
-                Vector<Float> widths = span.widths();
-                int i = 0;
-                for (i = 0; i < widths.size(); i++) {
-                    if (line_x + widths.get(i) <= line_max)
-                        line_x += widths.get(i);
-                    else
-                        break;
-                }
-
-                // Add span to line
-                if (i >= 0 && i < widths.size()) {
-
-                    // Span does not fit entirely
-                    if (i > 0) {
-                        // Split half that fits
-                        Vector<TextNormal> normal_a = new Vector<TextNormal>();
-                        Vector<TextNormal> normal_b = new Vector<TextNormal>();
-                        span.split(i, normal_a, normal_b);
-                        line_n.add(normal_a);
-                        span = new Span(normal_b);
+                    // Calculate possible line size
+                    Vector<Float> widths = span.widths();
+                    int i = 0;
+                    for (i = 0; i < widths.size(); i++) {
+                        if (line_x + widths.get(i) <= line_max)
+                            line_x += widths.get(i);
+                        else
+                            break;
                     }
 
-                    // Add new line with current spans 
-                    if (line_n.size() != 0) {
-                        // Add
-                        m_linemax = (m_linemax > line_x ? m_linemax : line_x);
-                        m_line_n.add(line_n);
-                        m_line_f.add(line_f);
+                    // Add span to line
+                    if (i >= 0 && i < widths.size()) {
 
-                        // Reset
-                        line_n = new LineNormal();
-                        line_f = new LineFurigana();
-                        line_x = 0.0f;
+                        // Span does not fit entirely
+                        if (i > 0) {
+                            // Split half that fits
+                            Vector<TextNormal> normal_a = new Vector<TextNormal>();
+                            Vector<TextNormal> normal_b = new Vector<TextNormal>();
+                            span.split(i, normal_a, normal_b);
+                            line_n.add(normal_a);
+                            span = new Span(normal_b);
+                        }
 
-                        // Next span
-                        continue;
+                        // Add new line with current spans
+                        if (line_n.size() != 0) {
+                            // Add
+                            m_linemax = (m_linemax > line_x ? m_linemax : line_x);
+                            m_line_n.add(line_n);
+                            m_line_f.add(line_f);
+
+                            // Reset
+                            line_n = new LineNormal();
+                            line_f = new LineFurigana();
+                            line_x = 0.0f;
+
+                            // Next span
+                            continue;
+                        }
+
+                    } else {
+
+                        // Span fits entirely
+                        line_n.add(span.normal());
+                        line_f.add(span.furigana(line_s));
+
                     }
 
-                } else {
-
-                    // Span fits entirely
-                    line_n.add(span.normal());
-                    line_f.add(span.furigana(line_s));
-
+                    // Next span
+                    span = null;
+                    span_i++;
+                    if (span_i < m_span.size())
+                        span = m_span.get(span_i);
                 }
 
-                // Next span
-                span = null;
-                span_i++;
-                if (span_i < m_span.size())
-                    span = m_span.get(span_i);
-            }
-
-            // Last span
-            if (line_n.size() != 0) {
-                // Add
-                m_linemax = (m_linemax > line_x ? m_linemax : line_x);
-                m_line_n.add(line_n);
-                m_line_f.add(line_f);
+                // Last span
+                if (line_n.size() != 0) {
+                    // Add
+                    m_linemax = (m_linemax > line_x ? m_linemax : line_x);
+                    m_line_n.add(line_n);
+                    m_line_f.add(line_f);
+                }
             }
         }
 
