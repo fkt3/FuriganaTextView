@@ -1,13 +1,15 @@
 package se.fekete.furiganatextview.utils;
 
-/**
- * Created by lorand on 2016-04-14.
- */
+
+
+
+@Deprecated
 public class FuriganaUtils {
     /**
      * The method parseRuby converts kanji enclosed in ruby tags to the
      * format which is supported by the textview {Kanji:furigana}
      *
+     * @deprecated Use the set{@link se.fekete.furiganatextview.furiganaview.FuriganaTextView}
      * @param textWithRuby
      */
     public static String parseRuby(String textWithRuby) {

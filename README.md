@@ -1,37 +1,35 @@
 # FuriganaTextView
+Custom TextView for Android for rendering Japanese text with furigana.
 [Licensed under Creative Commons BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
-#General
-FuriganaTextView is a Textview for Android that supports rendering of furigana characters above Japanese kanji.
-The FuriganaTextView builds upon the furigana-view that what originally authored by [sh0](https://github.com/sh0/furigana-view). The widget textsize and color can be modified from XML, however the text has to be set through the Java code. The library also includes a simple utils class that converts kanji enclosed in `<ruby>` tags into the string format supported by the widget.
 
-#Examples
-Adding the furigana textview in XML
+# Introduction
+FuriganaTextView is a Textview for Android that supports rendering of furigana characters above Japanese kanji.
+The FuriganaTextView builds upon the furigana-view written by [sh0](https://github.com/sh0/furigana-view). The TextView currently supports two xml attributes `app:contains_ruby_tags"` which is a boolean value and tells the FuriganaTextView that the text which is set contains `<ruby>` tags. The second attribute `app:furigana_text_color` takes a color and can be used to color the furigana separately from the main text. 
+
+# Examples
+
+##### Using FuriganaTextView in a Xml layout file.
 
  ```
- <se.fekete.furiganatextview.FuriganaView
-        android:id="@+id/furigana_view"
+    <se.fekete.furiganatextview.furiganaview.FuriganaTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp" />
+        android:text="サンシャイン６０の&lt;ruby&gt;展望台&lt;rt&gt;てんぼうだい&lt;/rt&gt;&lt;/ruby&gt;が&lt;ruby&gt;新&lt;rt&gt;あたら&lt;/rt&gt;&lt;/ruby&gt;しくなる"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/colorAccent"
+        app:contains_ruby_tags="true"
+        app:furigana_text_color="@color/colorPrimary" />
 ```
 
-Usage from Java
+##### Using FuriganaTextView in a Kotlin or Java file.
 ```
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        FuriganaView furiganaView = (FuriganaView) this.findViewById(R.id.furigana_view);
-        String textWithRuby = "サンシャイン６０の<ruby>展望台<rt>てんぼうだい</rt></ruby>が<ruby>新<rt>あたら</rt></ruby>しくなる";
-        textWithRuby = FuriganaUtils.parseRuby(textWithRuby); //Convert text with <ruby> tags
-        furiganaView.updateText(textWithRuby); //set the text
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        
+        val furiganaTextView = findViewById(R.id.text_view_furigana) as FuriganaTextView?
+        furiganaTextView!!.setFuriganaText("サンシャイン６０の<ruby>展望台<rt>てんぼうだい</rt></ruby>が<ruby>新<rt>あたら</rt></ruby>しくなる")
     }
 }
-
 ```
-
-If the kanji are not enclosed in `<ruby>` tags the supported string format is the same as presented by the [original author](https://github.com/sh0/furigana-view) of the furigana-view.
-`"{彼女;かのじょ}は{寒気;さむけ}を{防;ふせ}ぐために{厚;あつ}いコートを{着;き}ていた。"`

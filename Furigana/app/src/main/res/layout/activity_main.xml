@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
 
-    <se.fekete.furiganatextview.FuriganaView
-        android:id="@+id/furigana_view"
+    <se.fekete.furiganatextview.furiganaview.FuriganaTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp" />
+        android:text="サンシャイン６０の&lt;ruby&gt;展望台&lt;rt&gt;てんぼうだい&lt;/rt&gt;&lt;/ruby&gt;が&lt;ruby&gt;新&lt;rt&gt;あたら&lt;/rt&gt;&lt;/ruby&gt;しくなる"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:contains_ruby_tags="true" />
 
-</RelativeLayout>
+    <se.fekete.furiganatextview.furiganaview.FuriganaTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="サンシャイン６０の&lt;ruby&gt;展望台&lt;rt&gt;てんぼうだい&lt;/rt&gt;&lt;/ruby&gt;が&lt;ruby&gt;新&lt;rt&gt;あたら&lt;/rt&gt;&lt;/ruby&gt;しくなる"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        app:contains_ruby_tags="true" />
+
+    <se.fekete.furiganatextview.furiganaview.FuriganaTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="サンシャイン６０の&lt;ruby&gt;展望台&lt;rt&gt;てんぼうだい&lt;/rt&gt;&lt;/ruby&gt;が&lt;ruby&gt;新&lt;rt&gt;あたら&lt;/rt&gt;&lt;/ruby&gt;しくなる"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/colorAccent"
+        app:contains_ruby_tags="true"
+        app:furigana_text_color="@color/colorPrimary" />
+
+
+    <se.fekete.furiganatextview.furiganaview.FuriganaTextView
+        android:id="@+id/text_view_furigana"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorPrimary"
+        app:contains_ruby_tags="true" />
+
+</LinearLayout>
