@@ -1,10 +1,12 @@
 # FuriganaTextView
 Custom TextView for Android for rendering Japanese text with furigana.
+
 [Licensed under Creative Commons BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)
 
+Credits to [sh0](https://github.com/sh0/furigana-view) who has written the furigana-view which the FuriganaTextView is built upon.
+
 # Introduction
-FuriganaTextView is a Textview for Android that supports rendering of furigana characters above Japanese kanji.
-The FuriganaTextView builds upon the furigana-view written by [sh0](https://github.com/sh0/furigana-view). The TextView currently supports two xml attributes `app:contains_ruby_tags"` which is a boolean value and tells the FuriganaTextView that the text which is set contains `<ruby>` tags. The second attribute `app:furigana_text_color` takes a color and can be used to color the furigana separately from the main text. 
+FuriganaTextView is a Textview for Android that supports rendering of furigana characters above Japanese kanji. The TextView currently supports two xml attributes `app:contains_ruby_tags"` which is a boolean value and tells the FuriganaTextView that the text which is set contains `<ruby>` tags. The second attribute `app:furigana_text_color` takes a color and can be used to color the furigana separately from the main text. 
 
 # Examples
 
