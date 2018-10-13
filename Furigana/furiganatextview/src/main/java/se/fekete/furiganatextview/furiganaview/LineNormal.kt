@@ -2,8 +2,7 @@ package se.fekete.furiganatextview.furiganaview
 
 import android.graphics.Canvas
 import android.graphics.Paint
-
-import java.util.Vector
+import java.util.*
 
 class LineNormal(val paint: Paint) {
     // Text
