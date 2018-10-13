@@ -5,116 +5,131 @@ import java.util.*
 
 internal class Span {
     // Text
-    private var m_furigana: TextFurigana? = null
-    private var m_normal = Vector<TextNormal>()
+    private var furigana: TextFurigana? = null
+    private var normal = Vector<TextNormal>()
 
     // Widths
-    private val m_width_chars = Vector<Float>()
-    private var m_width_total = 0.0f
+    private val widthChars = Vector<Float>()
+    private var widthTotal = 0.0f
 
     // Constructors
-    constructor(text_f: String, text_k: String, mark_s: Int, mark_e: Int, paint: Paint, paint_f: Paint) {
+    constructor(textF: String, textK: String, markS: Int, markE: Int, paint: Paint, paintF: Paint) {
 
-        var mark_s = mark_s
-        var mark_e = mark_e
+        var mutableMarkS = markS
+        var mutableMarkE = markE
 
         // Furigana text
-        if (text_f.length > 0)
-            m_furigana = TextFurigana(text_f, paint_f)
+        if (textF.isNotEmpty()) {
+            furigana = TextFurigana(textF, paintF)
+        }
 
         // Normal text
-        if (mark_s < text_k.length && mark_e > 0 && mark_s < mark_e) {
+        if (mutableMarkS < textK.length && mutableMarkE > 0 && mutableMarkS < mutableMarkE) {
 
             // Fix marked bounds
-            mark_s = Math.max(0, mark_s)
-            mark_e = Math.min(text_k.length, mark_e)
+            mutableMarkS = Math.max(0, mutableMarkS)
+            mutableMarkE = Math.min(textK.length, mutableMarkE)
 
             // Prefix
-            if (mark_s > 0)
-                m_normal.add(TextNormal(text_k.substring(0, mark_s), paint))
+            if (mutableMarkS > 0) {
+                normal.add(TextNormal(textK.substring(0, mutableMarkS), paint))
+            }
 
             // Marked
-            if (mark_e > mark_s)
-                m_normal.add(TextNormal(text_k.substring(mark_s, mark_e), paint))
+            if (mutableMarkE > mutableMarkS) {
+                normal.add(TextNormal(textK.substring(mutableMarkS, mutableMarkE), paint))
+            }
 
             // Postfix
-            if (mark_e < text_k.length)
-                m_normal.add(TextNormal(text_k.substring(mark_e), paint))
+            if (mutableMarkE < textK.length) {
+                normal.add(TextNormal(textK.substring(mutableMarkE), paint))
+            }
 
         } else {
-
             // Non marked
-            m_normal.add(TextNormal(text_k, paint))
-
+            normal.add(TextNormal(textK, paint))
         }
 
         // Widths
-        widths_calculate()
+        calculateWidths()
     }
 
     constructor(normal: Vector<TextNormal>) {
         // Only normal text
-        m_normal = normal
+        this.normal = normal
 
         // Widths
-        widths_calculate()
+        calculateWidths()
     }
 
     // Text
     fun furigana(x: Float): TextFurigana? {
-        if (m_furigana == null)
+        if (furigana == null) {
             return null
-        m_furigana!!.offset_set(x + m_width_total / 2.0f)
-        return m_furigana
+        }
+
+        furigana?.setOffset(x + widthTotal / 2.0f)
+
+        return furigana
     }
 
     fun normal(): Vector<TextNormal> {
-        return m_normal
+        return normal
     }
 
     // Widths
     fun widths(): Vector<Float> {
-        return m_width_chars
+        return widthChars
     }
 
-    private fun widths_calculate() {
+    private fun calculateWidths() {
         // Chars
-        if (m_furigana == null) {
-            for (normal in m_normal)
-                for (v in normal.width_chars())
-                    m_width_chars.add(v)
+        if (furigana == null) {
+            for (normal in normal) {
+                for (v in normal.charsWidth()) {
+                    widthChars.add(v)
+                }
+            }
         } else {
             var sum = 0.0f
-            for (normal in m_normal)
-                for (v in normal.width_chars())
+
+            for (normal in normal) {
+                for (v in normal.charsWidth()) {
                     sum += v
-            m_width_chars.add(sum)
+                }
+            }
+            widthChars.add(sum)
         }
 
         // Total
-        m_width_total = 0.0f
-        for (v in m_width_chars)
-            m_width_total += v
+        widthTotal = 0.0f
+
+        for (v in widthChars) {
+            widthTotal += v
+        }
     }
 
     // Split
-    fun split(offset: Int, normal_a: Vector<TextNormal>, normal_b: Vector<TextNormal>) {
-        var offset = offset
+    fun split(offset: Int, normalA: Vector<TextNormal>, normalB: Vector<TextNormal>) {
+        var mutableOffset = offset
+
         // Check if no furigana
-        assert(m_furigana == null)
+        if (furigana == null) {
+            return
+        }
 
         // Split normal list
-        for (cur in m_normal) {
-            if (offset <= 0) {
-                normal_b.add(cur)
-            } else if (offset >= cur.length()) {
-                normal_a.add(cur)
-            } else {
-                val split = cur.split(offset)
-                normal_a.add(split[0])
-                normal_b.add(split[1])
+        for (cur in normal) {
+            when {
+                mutableOffset <= 0 -> normalB.add(cur)
+                mutableOffset >= cur.length() -> normalA.add(cur)
+                else -> {
+                    val split = cur.split(mutableOffset)
+                    normalA.add(split[0])
+                    normalB.add(split[1])
+                }
             }
-            offset -= cur.length()
+            mutableOffset -= cur.length()
         }
     }
 }

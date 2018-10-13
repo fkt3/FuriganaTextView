@@ -3,39 +3,38 @@ package se.fekete.furiganatextview.furiganaview
 import android.graphics.Canvas
 import android.graphics.Paint
 
-class TextNormal(private val m_text: String, private val m_paint: Paint) {
+class TextNormal(private val text: String, private val paint: Paint) {
 
-    private var m_width_total: Float = 0.toFloat()
-    private val m_width_chars: FloatArray
+    private var totalWidth: Float = 0.toFloat()
+    private val charsWidth: FloatArray = FloatArray(text.length)
 
     init {
-        m_width_chars = FloatArray(m_text.length)
-        m_paint.getTextWidths(m_text, m_width_chars)
+        paint.getTextWidths(text, charsWidth)
 
         // Total width
-        m_width_total = 0.0f
-        for (v in m_width_chars)
-            m_width_total += v
+        totalWidth = 0.0f
+        for (v in charsWidth)
+            totalWidth += v
     }
 
     // Info
     fun length(): Int {
-        return m_text.length
+        return text.length
     }
 
     // Widths
-    fun width_chars(): FloatArray {
-        return m_width_chars
+    fun charsWidth(): FloatArray {
+        return charsWidth
     }
 
     // Split
     fun split(offset: Int): Array<TextNormal> {
-        return arrayOf(TextNormal(m_text.substring(0, offset), m_paint), TextNormal(m_text.substring(offset), m_paint))
+        return arrayOf(TextNormal(text.substring(0, offset), paint), TextNormal(text.substring(offset), paint))
     }
 
     // Draw
     fun draw(canvas: Canvas, x: Float, y: Float): Float {
-        canvas.drawText(m_text, 0, m_text.length, x, y, m_paint)
-        return m_width_total
+        canvas.drawText(text, 0, text.length, x, y, paint)
+        return totalWidth
     }
 }

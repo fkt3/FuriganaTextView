@@ -3,31 +3,31 @@ package se.fekete.furiganatextview.furiganaview
 import android.graphics.Canvas
 import android.graphics.Paint
 
-class TextFurigana(private val m_text: String, private val m_paint_f: Paint) {
+class TextFurigana(private val text: String, private val paintF: Paint) {
 
     // Coordinates
-    private var m_offset = 0.0f
-    private var m_width = 0.0f
+    private var offset = 0.0f
+    private var width = 0.0f
 
     init {
-        m_width = m_paint_f.measureText(m_text)
+        width = paintF.measureText(text)
     }
 
-    fun offset_get(): Float {
-        return m_offset
+    fun getOffset(): Float {
+        return offset
     }
 
-    fun offset_set(value: Float) {
-        m_offset = value
+    fun setOffset(value: Float) {
+        offset = value
     }
 
     fun width(): Float {
-        return m_width
+        return width
     }
 
     fun draw(canvas: Canvas, x: Float, y: Float) {
-        var x = x
-        x -= m_width / 2.0f
-        canvas.drawText(m_text, 0, m_text.length, x, y, m_paint_f)
+        var mutableX = x
+        mutableX -= width / 2.0f
+        canvas.drawText(text, 0, text.length, mutableX, y, paintF)
     }
 }
