@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val furiganaTextView = findViewById(R.id.text_view_furigana) as FuriganaTextView?
-        furiganaTextView!!.setFuriganaText("サンシャイン６０の<ruby>展望台<rt>てんぼうだい</rt></ruby>が<ruby>新<rt>あたら</rt></ruby>しくなる")
+        val furiganaTextView = findViewById<FuriganaTextView>(R.id.text_view_furigana)
+        furiganaTextView?.setFuriganaText("<ruby>宮崎駿<rt>みやざきはやお</rt></ruby>さんは<ruby>有名<rt>ゆうめい</rt></ruby>です。")
     }
 }

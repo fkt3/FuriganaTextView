@@ -9,7 +9,7 @@
     <se.fekete.furiganatextview.furiganaview.FuriganaTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="サンシャイン６０の&lt;ruby&gt;展望台&lt;rt&gt;てんぼうだい&lt;/rt&gt;&lt;/ruby&gt;が&lt;ruby&gt;新&lt;rt&gt;あたら&lt;/rt&gt;&lt;/ruby&gt;しくなる"
+        android:text="@string/furigana_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:contains_ruby_tags="true" />
 
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="サンシャイン６０の&lt;ruby&gt;展望台&lt;rt&gt;てんぼうだい&lt;/rt&gt;&lt;/ruby&gt;が&lt;ruby&gt;新&lt;rt&gt;あたら&lt;/rt&gt;&lt;/ruby&gt;しくなる"
+        android:text="@string/furigana_text_2"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:contains_ruby_tags="true" />
 
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="サンシャイン６０の&lt;ruby&gt;展望台&lt;rt&gt;てんぼうだい&lt;/rt&gt;&lt;/ruby&gt;が&lt;ruby&gt;新&lt;rt&gt;あたら&lt;/rt&gt;&lt;/ruby&gt;しくなる"
+        android:text="@string/furigana_text_3"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/colorAccent"
         app:contains_ruby_tags="true"
