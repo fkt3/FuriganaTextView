@@ -1,3 +1,4 @@
+⚠️ **FuriganaTextView is not actively maintained**.
 
 # FuriganaTextView
 Custom TextView for Android for rendering Japanese text with furigana.
